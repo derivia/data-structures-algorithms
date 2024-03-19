@@ -19,20 +19,21 @@ myArray *arr_create(int capacity, DataType type) {
     fprintf(stderr, "Invalid data type\n");
     exit(EXIT_FAILURE);
   }
-  myArray *arr = malloc(capacity * type_size);
+  myArray *arr = malloc(sizeof(myArray));
+  arr->data = malloc(capacity * type_size);
   arr->capacity = capacity;
   arr->type = type_size;
   return arr;
 };
 
 void arr_update(myArray *arr, void *element, int index) {
-  void *update_location = arr + index * arr->type;
+  void *update_location = arr->data + index * arr->type;
   memcpy(update_location, element, arr->type);
 };
 
 void *arr_get(myArray *arr, int index) {
-  void *update_location = arr + index * arr->type;
-  return update_location;
+  void *get_location = arr->data + index * arr->type;
+  return get_location;
 };
 
 void arr_del(myArray *arr, int index) {
@@ -63,7 +64,9 @@ int main(int argc, char *argv[]) {
   for (int i = 0; i < charArr->capacity; i++) {
     printf("%c\n", *((char *)arr_get(charArr, i)));
   }
+  free(intArr->data);
   free(intArr);
+  free(charArr->data);
   free(charArr);
   return EXIT_SUCCESS;
 }
