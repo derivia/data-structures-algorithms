@@ -57,8 +57,9 @@ int main(int argc, char *argv[]) {
   myArray *charArr = arr_create(8, CHAR);
   printf("capacity: %d\ntype size in bytes: %u\n", charArr->capacity, charArr->type);
   printf("address of charArr in memory: %p\n", charArr);
+  int ascii_lowercase_a = 97;
   for (int i = 0; i < charArr->capacity; i++) {
-    int update_element = i + 97;
+    int update_element = i + ascii_lowercase_a;
     arr_update(charArr, &update_element, i);
   }
   for (int i = 0; i < charArr->capacity; i++) {
