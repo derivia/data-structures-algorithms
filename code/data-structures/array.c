@@ -3,17 +3,33 @@
 #include <stdlib.h>
 
 myArray *arr_create(int size, DataType type) {
-  // should allocate memory for the array based on size * type
-  // and i don't know how to return it properly
+  switch (type) {
+  case INT:
+    size = sizeof(int);
+    break;
+  case FLOAT:
+    size = sizeof(float);
+    break;
+  case CHAR:
+    size = sizeof(char);
+    break;
+  default:
+    fprintf(stderr, "Invalid data type\n");
+    exit(EXIT_FAILURE);
+  }
+  void *data = malloc(size * sizeof(DataType));
+  myArray *arr = malloc(sizeof(myArray));
+  arr->data = data;
+  arr->size = size;
+  arr->type = type;
+  return arr;
 };
 
-void arr_update(myArray *arr, int element, int index) {
+void arr_update(myArray *arr, void *element, int index) {
 
 };
 
-void *arr_get(myArray *arr, int index) {
-
-};
+void *arr_get(myArray *arr, int index) {};
 
 void arr_del(myArray *arr, int index) {
   // deleting on the end is different from deleting on other place, the elements
@@ -21,11 +37,7 @@ void arr_del(myArray *arr, int index) {
 };
 
 int main(int argc, char *argv[]) {
-  char test[20];
-  int testSize = sizeof(test) / sizeof(test[0]);
-  for (int i = 0; i < testSize; i++) {
-    test[i] = 'a' + i;
-    printf("%c\t%p\n", test[i], (void *)&test[i]);
-  }
+  myArray *arr = arr_create(8, INT);
+  printf("%d, %d, %s", arr->data, arr->size, arr->type);
   return EXIT_SUCCESS;
 }
