@@ -2,25 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-myArray *arr_create(int size, DataType type) {
+myArray *arr_create(int capacity, DataType type) {
   switch (type) {
   case INT:
-    size = sizeof(int);
+    type = sizeof(int);
     break;
   case FLOAT:
-    size = sizeof(float);
+    type = sizeof(float);
     break;
   case CHAR:
-    size = sizeof(char);
+    type = sizeof(char);
     break;
   default:
     fprintf(stderr, "Invalid data type\n");
     exit(EXIT_FAILURE);
   }
-  void *data = malloc(size * sizeof(DataType));
   myArray *arr = malloc(sizeof(myArray));
-  arr->data = data;
-  arr->size = size;
+  arr->capacity = capacity;
   arr->type = type;
   return arr;
 };
@@ -38,6 +36,6 @@ void arr_del(myArray *arr, int index) {
 
 int main(int argc, char *argv[]) {
   myArray *arr = arr_create(8, INT);
-  printf("%d, %d, %s", arr->data, arr->size, arr->type);
+  printf("capacity: %d\ntype size in bytes: %u\n", arr->capacity, arr->type);
   return EXIT_SUCCESS;
 }

@@ -9,7 +9,7 @@ typedef enum {
 
 typedef struct {
   void *data;
-  int size;
+  int capacity;
   DataType type;
 } myArray;
 
