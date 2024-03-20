@@ -7,7 +7,7 @@
  * TODO: add error handling and deletion function
  */
 
-myArray *arr_create(int capacity, DataType type) {
+MyArray *arr_create(int capacity, DataType type) {
   size_t type_size;
   switch (type) {
   case INT:
@@ -23,65 +23,64 @@ myArray *arr_create(int capacity, DataType type) {
     fprintf(stderr, "Invalid data type\n");
     exit(EXIT_FAILURE);
   }
-  myArray *arr = malloc(sizeof(myArray));
+  MyArray *arr = malloc(sizeof(MyArray));
   arr->data = calloc(capacity, type_size);
   arr->capacity = capacity;
   arr->type = type_size;
   return arr;
 };
 
-void arr_update(myArray *arr, void *element, int index) {
+void arr_update(MyArray *arr, void *element, int index) {
   void *update_location = arr->data + index * arr->type;
   memcpy(update_location, element, arr->type);
 };
 
-void *arr_get(myArray *arr, int index) {
+void *arr_get(MyArray *arr, int index) {
   void *get_location = arr->data + index * arr->type;
   return get_location;
 };
 
-void arr_destroy(myArray *arr) {
+void arr_destroy(MyArray *arr) {
   free(arr->data);
   free(arr);
 };
 
-myArray *intArrTest();
-myArray *charArrTest();
+MyArray *int_arr_test();
+MyArray *char_arr_test();
 
 int main(int argc, char *argv[]) {
-  myArray *intArr = intArrTest();
-  // myArray *charArr = charArrTest();
-  arr_destroy(intArr);
-  // free(charArr->data);
-  // free(charArr);
+  // MyArray *int_arr = int_arr_test();
+  MyArray *char_arr = char_arr_test();
+  // arr_destroy(int_arr);
+  arr_destroy(char_arr);
   return EXIT_SUCCESS;
 }
 
-myArray *intArrTest() {
-  myArray *intArr = arr_create(8, INT);
-  printf("capacity: %d\ntype size in bytes: %u\n", intArr->capacity, intArr->type);
-  printf("address of intArr in memory: %p\n", intArr);
-  for (int i = 0; i < intArr->capacity; i++) {
+MyArray *int_arr_test() {
+  MyArray *int_arr = arr_create(8, INT);
+  printf("capacity: %d\ntype size in bytes: %u\n", int_arr->capacity, int_arr->type);
+  printf("address of int_arr in memory: %p\n", int_arr);
+  for (int i = 0; i < int_arr->capacity; i++) {
     int update_element = i + 1;
-    arr_update(intArr, &update_element, i);
+    arr_update(int_arr, &update_element, i);
   }
-  for (int i = 0; i < intArr->capacity; i++) {
-    printf("element address in memory and value: %p, %d\n", (void *)arr_get(intArr, i), *((int *)arr_get(intArr, i)));
+  for (int i = 0; i < int_arr->capacity; i++) {
+    printf("element address in memory and value: %p, %d\n", (void *)arr_get(int_arr, i), *((int *)arr_get(int_arr, i)));
   }
-  return intArr;
+  return int_arr;
 }
 
-myArray *charArrTest() {
-  myArray *charArr = arr_create(8, CHAR);
-  printf("capacity: %d\ntype size in bytes: %u\n", charArr->capacity, charArr->type);
-  printf("address of charArr in memory: %p\n", charArr);
+MyArray *char_arr_test() {
+  MyArray *char_arr = arr_create(8, CHAR);
+  printf("capacity: %d\ntype size in bytes: %u\n", char_arr->capacity, char_arr->type);
+  printf("address of char_arr in memory: %p\n", char_arr);
   int ascii_lowercase_a = 97;
-  for (int i = 0; i < charArr->capacity; i++) {
+  for (int i = 0; i < char_arr->capacity; i++) {
     int update_element = i + ascii_lowercase_a;
-    arr_update(charArr, &update_element, i);
+    arr_update(char_arr, &update_element, i);
   }
-  for (int i = 0; i < charArr->capacity; i++) {
-    printf("%c\n", *((char *)arr_get(charArr, i)));
+  for (int i = 0; i < char_arr->capacity; i++) {
+    printf("element address in memory and value: %p, %c\n", (void *)arr_get(char_arr, i), *((char *)arr_get(char_arr, i)));
   }
-  return charArr;
+  return char_arr;
 }
