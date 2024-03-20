@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* 
+ * TODO: add error handling and deletion function
+ */
+
 myArray *arr_create(int capacity, DataType type) {
   size_t type_size;
   switch (type) {
@@ -20,7 +24,7 @@ myArray *arr_create(int capacity, DataType type) {
     exit(EXIT_FAILURE);
   }
   myArray *arr = malloc(sizeof(myArray));
-  arr->data = malloc(capacity * type_size);
+  arr->data = calloc(capacity, type_size);
   arr->capacity = capacity;
   arr->type = type_size;
   return arr;
@@ -36,13 +40,24 @@ void *arr_get(myArray *arr, int index) {
   return get_location;
 };
 
-void arr_del(myArray *arr, int index) {
-  // deleting on the end is different from deleting on other place, the elements
-  // should be shifted to the left if the deletion isn't on the end
+void arr_destroy(myArray *arr) {
+  free(arr->data);
+  free(arr);
 };
 
+myArray *intArrTest();
+myArray *charArrTest();
+
 int main(int argc, char *argv[]) {
-  // integer array test
+  myArray *intArr = intArrTest();
+  // myArray *charArr = charArrTest();
+  arr_destroy(intArr);
+  // free(charArr->data);
+  // free(charArr);
+  return EXIT_SUCCESS;
+}
+
+myArray *intArrTest() {
   myArray *intArr = arr_create(8, INT);
   printf("capacity: %d\ntype size in bytes: %u\n", intArr->capacity, intArr->type);
   printf("address of intArr in memory: %p\n", intArr);
@@ -51,9 +66,12 @@ int main(int argc, char *argv[]) {
     arr_update(intArr, &update_element, i);
   }
   for (int i = 0; i < intArr->capacity; i++) {
-    printf("%d\n", *((int *)arr_get(intArr, i)));
+    printf("element address in memory and value: %p, %d\n", (void *)arr_get(intArr, i), *((int *)arr_get(intArr, i)));
   }
-  // char array test
+  return intArr;
+}
+
+myArray *charArrTest() {
   myArray *charArr = arr_create(8, CHAR);
   printf("capacity: %d\ntype size in bytes: %u\n", charArr->capacity, charArr->type);
   printf("address of charArr in memory: %p\n", charArr);
@@ -65,9 +83,5 @@ int main(int argc, char *argv[]) {
   for (int i = 0; i < charArr->capacity; i++) {
     printf("%c\n", *((char *)arr_get(charArr, i)));
   }
-  free(intArr->data);
-  free(intArr);
-  free(charArr->data);
-  free(charArr);
-  return EXIT_SUCCESS;
+  return charArr;
 }
