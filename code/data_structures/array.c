@@ -20,7 +20,7 @@ MyArray *arr_create(int capacity, DataType type) {
     type_size = sizeof(char);
     break;
   default:
-    fprintf(stderr, "Invalid data type\n");
+    fprintf(stderr, "invalid data type\n");
     exit(EXIT_FAILURE);
   }
   MyArray *arr = malloc(sizeof(MyArray));

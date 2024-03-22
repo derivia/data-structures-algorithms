@@ -19,18 +19,18 @@ typedef struct {
   int size;
   struct Node *head;
   struct Node *tail;
-} Linked_List;
+} LinkedList;
 
-Linked_List *ll_create();
-int ll_size(Linked_List *linked_list);
-bool ll_is_empty(Linked_List *linked_list);
-int ll_value_at(Linked_List *linked_list, int index);
-void ll_push(Linked_List *linked_list, int value);
-void ll_pop(Linked_List *linked_list);
-void ll_insert_at(Linked_List *linked_list, int index, int value);
-void ll_erase_at(Linked_List *linked_list, int index);
-void ll_remove_value(Linked_List *linked_list, int value);
-void ll_destroy(Linked_List *linked_list);
-void ll_print(Linked_List *linked_list);
+LinkedList *ll_create();
+int ll_size(LinkedList *linked_list);
+bool ll_is_empty(LinkedList *linked_list);
+int ll_value_at(LinkedList *linked_list, int index);
+void ll_push(LinkedList *linked_list, int value);
+int ll_pop(LinkedList *linked_list);
+void ll_insert_at(LinkedList *linked_list, int index, int value);
+void ll_erase_at(LinkedList *linked_list, int index);
+void ll_remove_value(LinkedList *linked_list, int value);
+void ll_destroy(LinkedList *linked_list);
+void ll_print(LinkedList *linked_list);
 
 #endif
