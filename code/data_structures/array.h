@@ -11,11 +11,11 @@ typedef struct {
   void *data;
   int capacity;
   DataType type;
-} MyArray;
+} Array;
 
-MyArray *arr_create(int size, DataType type);
-void arr_update(MyArray *arr, void *element, int index);
-void *arr_get(MyArray *arr, int index);
-void arr_destroy(MyArray *arr);
+Array *array_create(int size, DataType type);
+void array_update(Array *arr, void *element, int index);
+void *array_get(Array *arr, int index);
+void array_destroy(Array *arr);
 
 #endif
