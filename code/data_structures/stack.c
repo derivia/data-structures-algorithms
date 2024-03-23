@@ -5,36 +5,36 @@
 
 Stack *stack_create() {
   Stack *stack = malloc(sizeof(Stack));
-  stack->list = ll_create();
+  stack->list = list_create();
   return stack;
 }
 
-void stack_push(Stack *stack, int value) { ll_push(stack->list, value); };
+void stack_push(Stack *stack, int value) { list_push(stack->list, value); };
 
 int stack_pop(Stack *stack) {
   if (stack_is_empty(stack)) {
     fprintf(stderr, "error: stack is empty\n");
     exit(EXIT_FAILURE);
   }
-  return ll_pop(stack->list);
-};
-
-int stack_size(Stack *stack) { return ll_size(stack->list); };
+  return list_pop(stack->list);
+}
 
 int stack_front(Stack *stack) {
   if (stack_is_empty(stack)) {
     fprintf(stderr, "error: stack is empty\n");
     exit(EXIT_FAILURE);
   }
-  return ll_value_at(stack->list, stack_size(stack) - 1);
-};
+  return list_value_at(stack->list, stack_size(stack) - 1);
+}
 
-bool stack_is_empty(Stack *stack) { return ll_is_empty(stack->list); };
+int stack_size(Stack *stack) { return list_size(stack->list); }
+
+bool stack_is_empty(Stack *stack) { return list_is_empty(stack->list); };
 
 void stack_destroy(Stack *stack) {
-  ll_destroy(stack->list);
+  list_destroy(stack->list);
   free(stack);
-};
+}
 
 void stack_print(Stack *stack) {
   if (stack->list->head == NULL || stack->list->size == 0) {

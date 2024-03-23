@@ -2,18 +2,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-LinkedList *ll_create() {
+LinkedList *list_create() {
   LinkedList *list = malloc(sizeof(LinkedList));
   list->size = 0;
   list->head = NULL;
   list->tail = NULL;
   return list;
 };
-int ll_size(LinkedList *linked_list) { return linked_list->size; };
 
-bool ll_is_empty(LinkedList *linked_list) { return linked_list->size == 0; };
+int list_size(LinkedList *linked_list) { return linked_list->size; };
 
-int ll_value_at(LinkedList *linked_list, int index) {
+bool list_is_empty(LinkedList *linked_list) { return linked_list->size == 0; };
+
+int list_value_at(LinkedList *linked_list, int index) {
   Node *current_node = linked_list->head;
   int current_index = 0;
   while (current_node != NULL && current_index < index) {
@@ -27,7 +28,7 @@ int ll_value_at(LinkedList *linked_list, int index) {
   }
 };
 
-void ll_push(LinkedList *linked_list, int value) {
+void list_push(LinkedList *linked_list, int value) {
   Node *new_node = malloc(sizeof(Node));
   new_node->data = value;
   new_node->next = NULL;
@@ -46,7 +47,7 @@ void ll_push(LinkedList *linked_list, int value) {
   }
 }
 
-int ll_pop(LinkedList *linked_list) {
+int list_pop(LinkedList *linked_list) {
   if (linked_list == NULL || linked_list->head == NULL) {
     return -1;
   }
@@ -73,7 +74,7 @@ int ll_pop(LinkedList *linked_list) {
   return popped;
 }
 
-void ll_insert_at(LinkedList *linked_list, int index, int value) {
+void list_insert_at(LinkedList *linked_list, int index, int value) {
   if (index < 0 || index > linked_list->size) {
     return;
   }
@@ -102,7 +103,7 @@ void ll_insert_at(LinkedList *linked_list, int index, int value) {
   linked_list->size++;
 };
 
-void ll_erase_at(LinkedList *linked_list, int index) {
+void list_erase_at(LinkedList *linked_list, int index) {
   if (index < 0 || index > linked_list->size) {
     return;
   }
@@ -129,7 +130,7 @@ void ll_erase_at(LinkedList *linked_list, int index) {
   linked_list->size--;
 };
 
-void ll_remove_first_node_with_value(LinkedList *linked_list, int value) {
+void list_remove_first_node_with_value(LinkedList *linked_list, int value) {
   if (linked_list->head == NULL) {
     return;
   }
@@ -159,7 +160,7 @@ void ll_remove_first_node_with_value(LinkedList *linked_list, int value) {
   }
 };
 
-void ll_destroy(LinkedList *linked_list) {
+void list_destroy(LinkedList *linked_list) {
   Node *current_node = linked_list->head;
   Node *next_node = NULL;
   while (current_node != NULL) {
@@ -170,7 +171,7 @@ void ll_destroy(LinkedList *linked_list) {
   free(linked_list);
 }
 
-void ll_print(LinkedList *linked_list) {
+void list_print(LinkedList *linked_list) {
   if (linked_list->head == NULL) {
     return;
   }
@@ -186,19 +187,19 @@ void ll_print(LinkedList *linked_list) {
 void test_linked_list(LinkedList *linked_list);
 
 // int main(int argc, char *argv[]) {
-//   LinkedList *linked_list = ll_create();
+//   LinkedList *linked_list = list_create();
 //   test_linked_list(linked_list);
 //   return EXIT_SUCCESS;
 // }
 
 void test_linked_list(LinkedList *linked_list) {
-  ll_push(linked_list, 5);
-  ll_print(linked_list);
-  ll_insert_at(linked_list, 1, 9);
-  ll_print(linked_list);
-  ll_erase_at(linked_list, 1);
-  ll_print(linked_list);
-  ll_push(linked_list, 42);
-  ll_print(linked_list);
-  ll_destroy(linked_list);
+  list_push(linked_list, 5);
+  list_print(linked_list);
+  list_insert_at(linked_list, 1, 9);
+  list_print(linked_list);
+  list_erase_at(linked_list, 1);
+  list_print(linked_list);
+  list_push(linked_list, 42);
+  list_print(linked_list);
+  list_destroy(linked_list);
 }

@@ -21,16 +21,16 @@ typedef struct {
   struct Node *tail;
 } LinkedList;
 
-LinkedList *ll_create();
-int ll_size(LinkedList *linked_list);
-bool ll_is_empty(LinkedList *linked_list);
-int ll_value_at(LinkedList *linked_list, int index);
-void ll_push(LinkedList *linked_list, int value);
-int ll_pop(LinkedList *linked_list);
-void ll_insert_at(LinkedList *linked_list, int index, int value);
-void ll_erase_at(LinkedList *linked_list, int index);
-void ll_remove_value(LinkedList *linked_list, int value);
-void ll_destroy(LinkedList *linked_list);
-void ll_print(LinkedList *linked_list);
+LinkedList *list_create();
+int list_size(LinkedList *linked_list);
+bool list_is_empty(LinkedList *linked_list);
+int list_value_at(LinkedList *linked_list, int index);
+void list_push(LinkedList *linked_list, int value);
+int list_pop(LinkedList *linked_list);
+void list_insert_at(LinkedList *linked_list, int index, int value);
+void list_erase_at(LinkedList *linked_list, int index);
+void list_remove_value(LinkedList *linked_list, int value);
+void list_destroy(LinkedList *linked_list);
+void list_print(LinkedList *linked_list);
 
 #endif
