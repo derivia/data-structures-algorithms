@@ -24,7 +24,7 @@ Array *array_create(int capacity, DataType type) {
     exit(EXIT_FAILURE);
   }
   Array *arr = malloc(sizeof(Array));
-  arr->data = calloc(capacity, type_size);
+  arr->data = calloc((size_t)capacity, type_size);
   arr->capacity = capacity;
   arr->type = type_size;
   return arr;

@@ -1,4 +1,5 @@
 #include "hash_table.h"
+#include "../misc/hash.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -37,4 +38,10 @@ void hash_table_destroy(HashTable *hash_table) {
   free(hash_table);
 };
 
-int main(int argc, char *argv[]) { return EXIT_SUCCESS; }
+int main(int argc, char *argv[]) {
+  const int prime = 157;
+  int result_one = hash("foo", prime, 32);
+  int result_two = hash("bar", prime, 32);
+  printf("hash test results: %d & %d\n", result_one, result_two);
+  return EXIT_SUCCESS;
+}
