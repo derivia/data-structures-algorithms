@@ -11,9 +11,9 @@
 
 ### Algorithms
 - Sorting:
-    - [Merge sort](code/algorithms/sorting/mergesort.c)
-    - [Quick sort](code/algorithms/sorting/quicksort.c)
+    - [Merge sort](code/algorithms/sorting/mergesort.js)
+    - [Quick sort](code/algorithms/sorting/quicksort.js)
  
 - Searching: 
-    - [Linear search](code/algorithms/searching/linear_search.c)
-    - [Binary search](code/algorithms/searching/binary_search.c)
+    - [Linear search](code/algorithms/searching/linear_search.js)
+    - [Binary search](code/algorithms/searching/binary_search.js)
