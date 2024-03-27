@@ -31,20 +31,12 @@ int list_value_at(LinkedList *linked_list, int index) {
 void list_push(LinkedList *linked_list, int value) {
   Node *new_node = malloc(sizeof(Node));
   new_node->data = value;
-  new_node->next = NULL;
-  if (linked_list->head == NULL) {
-    linked_list->head = new_node;
+  new_node->next = linked_list->head;
+  linked_list->head = new_node;
+  if (linked_list->tail == NULL) {
     linked_list->tail = new_node;
-    linked_list->size++;
-  } else if (linked_list->size == 1) {
-    linked_list->tail = new_node;
-    linked_list->head->next = new_node;
-    linked_list->size++;
-  } else {
-    linked_list->tail->next = new_node;
-    linked_list->tail = new_node;
-    linked_list->size++;
   }
+    linked_list->size++;
 }
 
 int list_pop(LinkedList *linked_list) {
@@ -186,11 +178,11 @@ void list_print(LinkedList *linked_list) {
 
 void test_linked_list(LinkedList *linked_list);
 
-// int main(int argc, char *argv[]) {
-//   LinkedList *linked_list = list_create();
-//   test_linked_list(linked_list);
-//   return EXIT_SUCCESS;
-// }
+int main(int argc, char *argv[]) {
+  LinkedList *linked_list = list_create();
+  test_linked_list(linked_list);
+  return EXIT_SUCCESS;
+}
 
 void test_linked_list(LinkedList *linked_list) {
   list_push(linked_list, 5);
