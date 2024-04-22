@@ -1,3 +1,5 @@
+const {randomArray} = require("../../misc/random_array.js");
+
 function merge(arrLeft, arrRight) {
   let finalArray = [];
   while (arrLeft.length !== 0 && arrRight.length !== 0) {
@@ -21,7 +23,7 @@ function mergeSort(arr) {
   return merge(arrLeft, arrRight);
 }
 
-let testArray = [6, 3, 28, 19, 27, 25, 12];
+let testArray = randomArray(16);
 console.log(mergeSort(testArray).join(" -> "));
 
 /*
