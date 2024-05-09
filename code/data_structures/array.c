@@ -3,10 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* 
- * TODO: add error handling and deletion function
- */
-
 Array *array_create(int capacity, DataType type) {
   size_t type_size;
   switch (type) {
