@@ -9,20 +9,20 @@
  * element.
  */
 
-#define HASH_CAPACITY 32
+#define HASH_CAPACITY 128
 
 // ASCII only key:value
 typedef struct HashTableItem {
-  char *key;
-  char *value;
-  struct HashTableItem *next;
+    char *key;
+    char *value;
+    struct HashTableItem *next;
 } HashTableItem;
 
 typedef struct {
-  int capacity;
-  // a pointer to an array of pointers, it points to the beginning of a block of
-  // memory so [] can be used in this like items[0] or items[i]
-  HashTableItem **items;
+    int capacity;
+    // a pointer to an array of pointers, it points to the beginning of a block of
+    // memory so [] can be used in this like items[0] or items[i]
+    HashTableItem **items;
 } HashTable;
 
 HashTable *hash_table_create();
