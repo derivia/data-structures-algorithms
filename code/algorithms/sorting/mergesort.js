@@ -23,8 +23,8 @@ function mergeSort(arr) {
   return merge(arrLeft, arrRight);
 }
 
-let testArray = randomArray(16);
-console.log(mergeSort(testArray).join(" -> "));
+let array = randomArray(16);
+console.log(`[${mergeSort(array).join(", ")}]`);
 
 /*
  * Basically splits the array into smallers arrays until there are only arrays with two elements

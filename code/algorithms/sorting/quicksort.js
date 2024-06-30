@@ -11,7 +11,7 @@ function quicksort(array) {
 }
 
 let array = randomArray(16);
-console.log(quicksort(array).join(" -> "));
+console.log(`[${quicksort(array).join(", ")}]`);
 
 /*
  * Basically recursively makes smaller arrays with different pivots and concatenate them in the end.
